@@ -11,6 +11,18 @@
 		2EC3ACDC292A4B8700E41148 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3ACDB292A4B8700E41148 /* ContentView.swift */; };
 		2EC3ACDE292A4B8900E41148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3ACDD292A4B8900E41148 /* Assets.xcassets */; };
 		2EC3ACE1292A4B8900E41148 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3ACE0292A4B8900E41148 /* Preview Assets.xcassets */; };
+		2EE94371292BA4E700166EF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EE94370292BA4E700166EF9 /* GoogleService-Info.plist */; };
+		2EE94373292BA4EF00166EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94372292BA4EF00166EF9 /* AppDelegate.swift */; };
+		2EE94375292BA4FF00166EF9 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */; };
+		2EE94377292BA50700166EF9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94376292BA50700166EF9 /* ImagePicker.swift */; };
+		2EE94379292BA50C00166EF9 /* VoucherAdditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */; };
+		2EE9437B292BA54E00166EF9 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EE9437A292BA54E00166EF9 /* Secret.plist */; };
+		2EE9437D292BA5A900166EF9 /* VoucherBox+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */; };
+		2EE94380292BA8D600166EF9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE9437F292BA8D600166EF9 /* FirebaseAnalytics */; };
+		2EE94382292BA8D600166EF9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94381292BA8D600166EF9 /* FirebaseCrashlytics */; };
+		2EE94384292BA8D600166EF9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94383292BA8D600166EF9 /* FirebaseFirestore */; };
+		2EE94386292BA8D600166EF9 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94385292BA8D600166EF9 /* FirebasePerformance */; };
+		2EE94388292BA8D600166EF9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94387292BA8D600166EF9 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +31,13 @@
 		2EC3ACDB292A4B8700E41148 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EC3ACDD292A4B8900E41148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EC3ACE0292A4B8900E41148 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2EE94370292BA4E700166EF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2EE94372292BA4EF00166EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
+		2EE94376292BA50700166EF9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherAdditionalView.swift; sourceTree = "<group>"; };
+		2EE9437A292BA54E00166EF9 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
+		2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoucherBox+Bundle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +45,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE94380292BA8D600166EF9 /* FirebaseAnalytics in Frameworks */,
+				2EE94382292BA8D600166EF9 /* FirebaseCrashlytics in Frameworks */,
+				2EE94386292BA8D600166EF9 /* FirebasePerformance in Frameworks */,
+				2EE94388292BA8D600166EF9 /* FirebaseStorage in Frameworks */,
+				2EE94384292BA8D600166EF9 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +77,13 @@
 			children = (
 				2EC3ACD9292A4B8700E41148 /* VoucherBoxApp.swift */,
 				2EC3ACDB292A4B8700E41148 /* ContentView.swift */,
+				2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */,
+				2EE94372292BA4EF00166EF9 /* AppDelegate.swift */,
+				2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */,
+				2EE94376292BA50700166EF9 /* ImagePicker.swift */,
+				2EE9437A292BA54E00166EF9 /* Secret.plist */,
+				2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */,
+				2EE94370292BA4E700166EF9 /* GoogleService-Info.plist */,
 				2EC3ACDD292A4B8900E41148 /* Assets.xcassets */,
 				2EC3ACDF292A4B8900E41148 /* Preview Content */,
 			);
@@ -83,6 +114,13 @@
 			dependencies = (
 			);
 			name = VoucherBox;
+			packageProductDependencies = (
+				2EE9437F292BA8D600166EF9 /* FirebaseAnalytics */,
+				2EE94381292BA8D600166EF9 /* FirebaseCrashlytics */,
+				2EE94383292BA8D600166EF9 /* FirebaseFirestore */,
+				2EE94385292BA8D600166EF9 /* FirebasePerformance */,
+				2EE94387292BA8D600166EF9 /* FirebaseStorage */,
+			);
 			productName = VoucherBox;
 			productReference = 2EC3ACD6292A4B8700E41148 /* VoucherBox.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +149,9 @@
 				Base,
 			);
 			mainGroup = 2EC3ACCD292A4B8700E41148;
+			packageReferences = (
+				2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 2EC3ACD7292A4B8700E41148 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,8 +166,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE9437B292BA54E00166EF9 /* Secret.plist in Resources */,
 				2EC3ACE1292A4B8900E41148 /* Preview Assets.xcassets in Resources */,
 				2EC3ACDE292A4B8900E41148 /* Assets.xcassets in Resources */,
+				2EE94371292BA4E700166EF9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +180,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE94375292BA4FF00166EF9 /* FirebaseStorageManager.swift in Sources */,
+				2EE94373292BA4EF00166EF9 /* AppDelegate.swift in Sources */,
+				2EE94377292BA50700166EF9 /* ImagePicker.swift in Sources */,
 				2EC3ACDC292A4B8700E41148 /* ContentView.swift in Sources */,
+				2EE94379292BA50C00166EF9 /* VoucherAdditionalView.swift in Sources */,
+				2EE9437D292BA5A900166EF9 /* VoucherBox+Bundle.swift in Sources */,
 				2EC3ACDA292A4B8700E41148 /* VoucherBoxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +387,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2EE9437F292BA8D600166EF9 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2EE94381292BA8D600166EF9 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		2EE94383292BA8D600166EF9 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		2EE94385292BA8D600166EF9 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		2EE94387292BA8D600166EF9 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE9437E292BA8D600166EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2EC3ACCE292A4B8700E41148 /* Project object */;
 }
