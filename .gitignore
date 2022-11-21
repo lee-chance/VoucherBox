@@ -1,3 +1,11 @@
+*.xcworkspacedata
 *.xcuserstate
+*.xcbkptlist
+*.xcsheme
+*.xcsettings
+*.xccheckout
+*.xcscheme
+xcschememanagement.plist
+
 GoogleService-Info.plist
 Secret.plist
