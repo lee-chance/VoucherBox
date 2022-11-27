@@ -18,9 +18,7 @@ struct RootView: View {
             SplashView(userInfo: $userInfo, afterAnimation: $didSplash)
                 .onAppear {
                     FirebaseAuthManager.addStateDidChangeListener { _, user in
-                        if let user {
-                            userInfo = user
-                        }
+                        userInfo = user
                     }
                 }
                 .onAppear {

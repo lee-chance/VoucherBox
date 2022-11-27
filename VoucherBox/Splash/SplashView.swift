@@ -16,7 +16,9 @@ struct SplashView: View {
             Text("Let's Pocket Voucher!")
             
             if userInfo == nil, afterAnimation {
-                Button(action: {}) {
+                Button(action: {
+                    FirebaseAuthManager.signIn(withEmail: "a@a.com", password: "123456")
+                }) {
                     Text("login to email")
                 }
                 

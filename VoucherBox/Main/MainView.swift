@@ -20,6 +20,14 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
                 Spacer()
                 
                 Button(action: {
+                    FirebaseAuthManager.signOut()
+                }) {
+                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                }
+                
+                Button(action: {
                     openAdditionalView = true
                 }) {
                     Image(systemName: "plus.circle")
@@ -32,8 +40,18 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
             }
             
             ScrollView {
-                ForEach(viewModel.vouchers) { voucher in
-                    voucherCard(voucher)
+                if let vouchers = viewModel.vouchers {
+                    if vouchers.count > 0 {
+                        ForEach(vouchers) { voucher in
+                            voucherCard(voucher)
+                        }
+                    } else {
+                        Text("Need to add new voucher")
+                    }
+                } else {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
         }
@@ -58,9 +76,3 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
         .border(Color.red)
     }
 }
-
-//struct MainView: PreviewProvider {
-//    static var previews: some View {
-//        MainView()
-//    }
-//}
