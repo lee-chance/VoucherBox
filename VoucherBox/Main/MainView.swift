@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  VoucherBox
 //
 //  Created by Changsu Lee on 2022/11/20.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView<ViewModel: MainViewModelProtocol>: View {
+    @StateObject var viewModel: ViewModel
     @State private var openAdditionalView: Bool = false
     
     var body: some View {
@@ -31,24 +32,24 @@ struct ContentView: View {
             }
             
             ScrollView {
-                ForEach(0..<3, id: \.self) { i in
-                    voucher(i)
+                ForEach(viewModel.vouchers) { voucher in
+                    voucherCard(voucher)
                 }
             }
         }
         .padding()
     }
     
-    private func voucher(_ index: Int) -> some View {
+    private func voucherCard(_ voucher: Voucher) -> some View {
         HStack {
             Image(systemName: "flame.fill")
             
             VStack(alignment: .leading) {
-                Text("Name")
+                Text(voucher.name)
                 
-                Text("Validate Date")
+                Text(voucher.validationDate.description)
                 
-                Text("Where")
+                Text(voucher.store)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -58,8 +59,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct MainView: PreviewProvider {
+//    static var previews: some View {
+//        MainView()
+//    }
+//}

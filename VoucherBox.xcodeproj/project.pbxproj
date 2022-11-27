@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E985EAE29338E6C00544861 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E985EAD29338E6C00544861 /* SplashView.swift */; };
+		2E985EB02933940300544861 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E985EAF2933940300544861 /* RootView.swift */; };
+		2E985EB22933986200544861 /* PVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E985EB12933986200544861 /* PVUser.swift */; };
+		2E985EB42933A58200544861 /* Voucher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E985EB32933A58200544861 /* Voucher.swift */; };
+		2E985EBF2933A88300544861 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E985EBE2933A88300544861 /* MainViewModel.swift */; };
 		2EC3ACDA292A4B8700E41148 /* VoucherBoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3ACD9292A4B8700E41148 /* VoucherBoxApp.swift */; };
-		2EC3ACDC292A4B8700E41148 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3ACDB292A4B8700E41148 /* ContentView.swift */; };
+		2EC3ACDC292A4B8700E41148 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3ACDB292A4B8700E41148 /* MainView.swift */; };
 		2EC3ACDE292A4B8900E41148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3ACDD292A4B8900E41148 /* Assets.xcassets */; };
 		2EC3ACE1292A4B8900E41148 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3ACE0292A4B8900E41148 /* Preview Assets.xcassets */; };
 		2EC6EC23293074D6007ED621 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC6EC22293074D6007ED621 /* FirebaseAuth */; };
@@ -18,7 +23,6 @@
 		2EE94375292BA4FF00166EF9 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */; };
 		2EE94377292BA50700166EF9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94376292BA50700166EF9 /* ImagePicker.swift */; };
 		2EE94379292BA50C00166EF9 /* VoucherAdditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */; };
-		2EE9437B292BA54E00166EF9 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EE9437A292BA54E00166EF9 /* Secret.plist */; };
 		2EE9437D292BA5A900166EF9 /* VoucherBox+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */; };
 		2EE94380292BA8D600166EF9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE9437F292BA8D600166EF9 /* FirebaseAnalytics */; };
 		2EE94382292BA8D600166EF9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94381292BA8D600166EF9 /* FirebaseCrashlytics */; };
@@ -28,9 +32,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E985EAD29338E6C00544861 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		2E985EAF2933940300544861 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2E985EB12933986200544861 /* PVUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVUser.swift; sourceTree = "<group>"; };
+		2E985EB32933A58200544861 /* Voucher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voucher.swift; sourceTree = "<group>"; };
+		2E985EBE2933A88300544861 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2EC3ACD6292A4B8700E41148 /* VoucherBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoucherBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC3ACD9292A4B8700E41148 /* VoucherBoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherBoxApp.swift; sourceTree = "<group>"; };
-		2EC3ACDB292A4B8700E41148 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2EC3ACDB292A4B8700E41148 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2EC3ACDD292A4B8900E41148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EC3ACE0292A4B8900E41148 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EC6EC24293074E9007ED621 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -39,7 +48,6 @@
 		2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		2EE94376292BA50700166EF9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherAdditionalView.swift; sourceTree = "<group>"; };
-		2EE9437A292BA54E00166EF9 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
 		2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoucherBox+Bundle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +68,87 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E985EB52933A7B100544861 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2EC3ACDB292A4B8700E41148 /* MainView.swift */,
+				2E985EBE2933A88300544861 /* MainViewModel.swift */,
+				2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2E985EB62933A7B700544861 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				2E985EAF2933940300544861 /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		2E985EB72933A7BE00544861 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				2E985EAD29338E6C00544861 /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		2E985EB82933A7CE00544861 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2E985EBB2933A7FB00544861 /* Model */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2E985EB92933A7DF00544861 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2EC3ACD9292A4B8700E41148 /* VoucherBoxApp.swift */,
+				2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */,
+				2EE94372292BA4EF00166EF9 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2E985EBA2933A7F200544861 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */,
+				2EC6EC24293074E9007ED621 /* FirebaseAuthManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		2E985EBB2933A7FB00544861 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E985EB12933986200544861 /* PVUser.swift */,
+				2E985EB32933A58200544861 /* Voucher.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E985EBC2933A80600544861 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2E985EBA2933A7F200544861 /* Manager */,
+				2EE94376292BA50700166EF9 /* ImagePicker.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		2E985EBD2933A83500544861 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2EE94370292BA4E700166EF9 /* GoogleService-Info.plist */,
+				2EC3ACDD292A4B8900E41148 /* Assets.xcassets */,
+				2EC3ACDF292A4B8900E41148 /* Preview Content */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		2EC3ACCD292A4B8700E41148 = {
 			isa = PBXGroup;
 			children = (
@@ -80,18 +169,13 @@
 		2EC3ACD8292A4B8700E41148 /* VoucherBox */ = {
 			isa = PBXGroup;
 			children = (
-				2EC3ACD9292A4B8700E41148 /* VoucherBoxApp.swift */,
-				2EC3ACDB292A4B8700E41148 /* ContentView.swift */,
-				2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */,
-				2EE94372292BA4EF00166EF9 /* AppDelegate.swift */,
-				2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */,
-				2EC6EC24293074E9007ED621 /* FirebaseAuthManager.swift */,
-				2EE94376292BA50700166EF9 /* ImagePicker.swift */,
-				2EE9437A292BA54E00166EF9 /* Secret.plist */,
-				2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */,
-				2EE94370292BA4E700166EF9 /* GoogleService-Info.plist */,
-				2EC3ACDD292A4B8900E41148 /* Assets.xcassets */,
-				2EC3ACDF292A4B8900E41148 /* Preview Content */,
+				2E985EB92933A7DF00544861 /* App */,
+				2E985EB82933A7CE00544861 /* Common */,
+				2E985EBC2933A80600544861 /* Util */,
+				2E985EBD2933A83500544861 /* Resource */,
+				2E985EB62933A7B700544861 /* Root */,
+				2E985EB72933A7BE00544861 /* Splash */,
+				2E985EB52933A7B100544861 /* Main */,
 			);
 			path = VoucherBox;
 			sourceTree = "<group>";
@@ -180,7 +264,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EE9437B292BA54E00166EF9 /* Secret.plist in Resources */,
 				2EC3ACE1292A4B8900E41148 /* Preview Assets.xcassets in Resources */,
 				2EC3ACDE292A4B8900E41148 /* Assets.xcassets in Resources */,
 				2EE94371292BA4E700166EF9 /* GoogleService-Info.plist in Resources */,
@@ -194,14 +277,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E985EB42933A58200544861 /* Voucher.swift in Sources */,
 				2EE94375292BA4FF00166EF9 /* FirebaseStorageManager.swift in Sources */,
 				2EE94373292BA4EF00166EF9 /* AppDelegate.swift in Sources */,
+				2E985EB22933986200544861 /* PVUser.swift in Sources */,
 				2EC6EC25293074E9007ED621 /* FirebaseAuthManager.swift in Sources */,
+				2E985EBF2933A88300544861 /* MainViewModel.swift in Sources */,
 				2EE94377292BA50700166EF9 /* ImagePicker.swift in Sources */,
-				2EC3ACDC292A4B8700E41148 /* ContentView.swift in Sources */,
+				2E985EB02933940300544861 /* RootView.swift in Sources */,
+				2EC3ACDC292A4B8700E41148 /* MainView.swift in Sources */,
 				2EE94379292BA50C00166EF9 /* VoucherAdditionalView.swift in Sources */,
 				2EE9437D292BA5A900166EF9 /* VoucherBox+Bundle.swift in Sources */,
 				2EC3ACDA292A4B8700E41148 /* VoucherBoxApp.swift in Sources */,
+				2E985EAE29338E6C00544861 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +417,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"VoucherBox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"VoucherBox/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PJ23MZ7RT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -358,7 +446,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"VoucherBox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"VoucherBox/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PJ23MZ7RT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
