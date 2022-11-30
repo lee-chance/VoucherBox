@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import FirebaseStorage
 
-struct VoucherAdditionalView: View {
-    @StateObject private var vm = ViewModel()
+struct VoucherAdditionalView<ViewModel: VoucherAdditionalViewModelProtocol>: View {
+    @StateObject var viewModel: ViewModel
     
     @State private var showImagePicker: Bool = false
     @State private var isLoading: Bool = false
@@ -30,14 +29,14 @@ struct VoucherAdditionalView: View {
                 } else {
                     Button(action: {
                         // send image
-//                        showImagePicker = true
+                        showImagePicker = true
                         
                         // load image
-                        isLoading = true
-                        vm.getImage {
-                            isLoading = false
-                            uiImage = $0
-                        }
+//                        isLoading = true
+//                        vm.getImage {
+//                            isLoading = false
+//                            uiImage = $0
+//                        }
                     }) {
                         Image(systemName: "photo")
                             .resizable()
@@ -45,7 +44,7 @@ struct VoucherAdditionalView: View {
                             .frame(width: 200, height: 300)
                     }
                     .sheet(isPresented: $showImagePicker, onDismiss: {
-                        vm.uploadImage(image: uiImage)
+                        viewModel.uploadImage(image: uiImage, to: "UserVoucher/\(viewModel.userInfo.uid)")
                     }, content: {
                         ImagePicker(image: $uiImage)
                     })
@@ -53,30 +52,5 @@ struct VoucherAdditionalView: View {
             }
         }
         .border(Color.blue)
-    }
-}
-
-struct VoucherAdditionalView_Previews: PreviewProvider {
-    static var previews: some View {
-        VoucherAdditionalView()
-    }
-}
-
-final class ViewModel: ObservableObject {
-    func getImage(completion: @escaping (UIImage?) -> Void) {
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let spaceRef = storageRef.child("sample.jpg")
-        let path = "\(Bundle.main.firebaseStorageURLPrefix)\(spaceRef.fullPath)"
-        FirebaseStorageManager.downloadImage(urlString: path) { uiimage in
-            completion(uiimage)
-        }
-    }
-    
-    func uploadImage(image: UIImage?) {
-        guard let image else { return }
-        FirebaseStorageManager.uploadImage(image: image, pathRoot: "") { url in
-            print("ur: \(url)")
-        }
     }
 }

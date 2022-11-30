@@ -35,7 +35,7 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
                         .frame(width: 24, height: 24)
                 }
                 .sheet(isPresented: $openAdditionalView) {
-                    VoucherAdditionalView()
+                    VoucherAdditionalView(viewModel: VoucherAdditionalViewModel(userInfo: viewModel.userInfo))
                 }
             }
             
