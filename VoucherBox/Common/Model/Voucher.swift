@@ -11,6 +11,7 @@ struct Voucher: Identifiable {
     let id: String
     let name: String
     let store: String
+    let code: String
     let validationDate: Date
     let imageURLString: String
     

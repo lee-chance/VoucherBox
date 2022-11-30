@@ -51,9 +51,10 @@ extension QueryDocumentSnapshot {
         let data = data()
         let name = data["name"] as? String ?? "name error"
         let store = data["store"] as? String ?? "store error"
+        let code = data["code"] as? String ?? "code error"
         let validationDate = data["validationDate"] as? Date ?? Date()
         let imageURLString = data["imageURLString"] as? String ?? "imageURLString error"
         
-        return Voucher(id: id, name: name, store: store, validationDate: validationDate, imageURLString: imageURLString)
+        return Voucher(id: id, name: name, store: store, code: code, validationDate: validationDate, imageURLString: imageURLString)
     }
 }

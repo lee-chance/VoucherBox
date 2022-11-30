@@ -50,6 +50,8 @@ struct VoucherAdditionalView<ViewModel: VoucherAdditionalViewModelProtocol>: Vie
                     })
                 }
             }
+            
+            Text("\(String(describing: viewModel.voucher))")
         }
         .border(Color.blue)
     }

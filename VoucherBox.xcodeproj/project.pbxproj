@@ -32,6 +32,7 @@
 		2EFD56D32936F0A3007BB1A1 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD56D12936F0A3007BB1A1 /* Secret.plist */; };
 		2EFD56D42936F0A3007BB1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD56D22936F0A3007BB1A1 /* GoogleService-Info.plist */; };
 		2EFD56DD29373292007BB1A1 /* VoucherAdditionalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD56DC29373292007BB1A1 /* VoucherAdditionalViewModel.swift */; };
+		2EFD56DF293734D5007BB1A1 /* ClovaOCRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD56DE293734D5007BB1A1 /* ClovaOCRManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		2EFD56D12936F0A3007BB1A1 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Secret.plist; path = VoucherBox/Secret.plist; sourceTree = SOURCE_ROOT; };
 		2EFD56D22936F0A3007BB1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "VoucherBox/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2EFD56DC29373292007BB1A1 /* VoucherAdditionalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherAdditionalViewModel.swift; sourceTree = "<group>"; };
+		2EFD56DE293734D5007BB1A1 /* ClovaOCRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaOCRManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				2EE94374292BA4FF00166EF9 /* FirebaseStorageManager.swift */,
 				2EC6EC24293074E9007ED621 /* FirebaseAuthManager.swift */,
 				2E985EC02933AC0100544861 /* FirestoreManager.swift */,
+				2EFD56DE293734D5007BB1A1 /* ClovaOCRManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				2E985EC12933AC0100544861 /* FirestoreManager.swift in Sources */,
 				2EE94375292BA4FF00166EF9 /* FirebaseStorageManager.swift in Sources */,
 				2EE94373292BA4EF00166EF9 /* AppDelegate.swift in Sources */,
+				2EFD56DF293734D5007BB1A1 /* ClovaOCRManager.swift in Sources */,
 				2E985EB22933986200544861 /* PVUser.swift in Sources */,
 				2EC6EC25293074E9007ED621 /* FirebaseAuthManager.swift in Sources */,
 				2EFD56DD29373292007BB1A1 /* VoucherAdditionalViewModel.swift in Sources */,

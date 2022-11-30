@@ -11,10 +11,35 @@ extension Bundle {
     var firebaseStorageURLPrefix: String {
         SecretKey.firebaseStorageURLPrefix.value
     }
+    
+    var clovaBaseURLString: String {
+        SecretKey.clovaBaseURLString.value
+    }
+    
+    var clovaDomainID: String {
+        SecretKey.clovaDomainID.value
+    }
+    
+    var clovaSignature: String {
+        SecretKey.clovaSignature.value
+    }
+    
+    var clovaPath: String {
+        SecretKey.clovaPath.value
+    }
+    
+    var clovaOCRSecret: String {
+        SecretKey.clovaOCRSecret.value
+    }
 }
 
 private enum SecretKey: String {
     case firebaseStorageURLPrefix = "FIREBASE_STORAGE_URL_PREFIX"
+    case clovaBaseURLString = "CLOVA_BASE_URL"
+    case clovaDomainID = "CLOVA_DOMAIN_ID"
+    case clovaSignature = "CLOVA_SIGNATURE"
+    case clovaPath = "CLOVA_PATH"
+    case clovaOCRSecret = "CLOVA_OCR_SECRET"
     
     var value: String {
         let fileName = "Secret"
