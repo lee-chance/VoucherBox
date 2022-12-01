@@ -24,12 +24,16 @@ final class MainViewModel: MainViewModelProtocol {
         fetchVouchersFromFirestore(userID: userInfo.uid)
     }
     
+    deinit {
+        FirestoreManager.listenerByLabel["MAIN_VOUCHERS"]?.remove()
+    }
+    
     private func fetchVouchersFromFirestore(userID: String) {
-        FirestoreManager
+        FirestoreManager.listenerByLabel["MAIN_VOUCHERS"] = FirestoreManager
             .reference(path: .users)
             .reference(path: userID)
             .reference(path: .vouchers)
-            .getDocuments { [weak self] querySnapshot, error in
+            .addSnapshotListener { [weak self] querySnapshot, error in
                 if let error {
                     print("Error getting documents: \(error)")
                     return

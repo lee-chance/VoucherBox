@@ -49,6 +49,8 @@ final class ClovaOCRManager {
     }
 }
 
+
+// Clova OCR Model Common
 struct ClovaOCRResponse: Codable {
     let images: [ClovaOCRImage]
 }
@@ -81,4 +83,57 @@ struct ClovaOCRField: Codable {
 
 struct ClovaOCRFieldBound: Codable {
     let top, left, width, height: Double
+}
+
+
+// Clova OCR Model For App
+extension ClovaOCRField {
+    var type: FieldType {
+        switch name {
+        case "상품명":
+            return .productName
+        case "쿠폰코드":
+            return .voucherCode
+        case "교환처":
+            return .redemptionStore
+        case "유효기간":
+            return .validationDateString
+        default:
+            return .etc
+        }
+    }
+    
+    enum FieldType {
+        case productName
+        case voucherCode
+        case redemptionStore
+        case validationDateString
+        case etc
+    }
+}
+
+extension ClovaOCRMatchedTemplate {
+    var type: TemplateType {
+        TemplateType(rawValue: id) ?? .etc
+    }
+    
+    enum TemplateType: Int {
+        case kakaotalk = 21331
+        case inumber = 21333
+        case giftishow = 21334
+        case etc = 0
+        
+        var toVoucherType: Voucher.VoucherType? {
+            switch self {
+            case .kakaotalk:
+                return .kakaotalk
+            case .inumber:
+                return .inumber
+            case .giftishow:
+                return .giftishow
+            default:
+                return nil
+            }
+        }
+    }
 }

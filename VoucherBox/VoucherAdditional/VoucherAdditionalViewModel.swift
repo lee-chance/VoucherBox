@@ -16,33 +16,39 @@ protocol VoucherAdditionalViewModelProtocol: ObservableObject {
     
     func getImage(completion: @escaping (UIImage?) -> Void)
     func uploadImage(image: UIImage?, to path: String)
+    func insertNewVoucherToFirestore(voucher: Voucher)
 }
 
 final class VoucherAdditionalViewModel: VoucherAdditionalViewModelProtocol {
     let userInfo: PVUser
     var voucherImage: ClovaOCRImage? {
         didSet {
-            if let voucherImage {
-                DispatchQueue.main.async {
-                    let voucher = Voucher(
-                        id: "",
-                        name: voucherImage.fields?.first(where: { $0.name == "쿠폰 이름" })?.inferText ?? "error",
-                        store: voucherImage.fields?.first(where: { $0.name == "쿠폰 발행사" })?.inferText ?? "error",
-                        code: voucherImage.fields?.first(where: { $0.name == "쿠폰 코드" })?.inferText ?? "error",
-//                        validationDate: voucherImage.fields?.first(where: { $0.name == "유효기간" })?.inferText,
-                        validationDate: .now,
-                        imageURLString: ""
-                    )
-                    self.voucher = voucher
-                }
+            guard
+                let voucherImage,
+                let fields = voucherImage.fields,
+                let template = voucherImage.matchedTemplate
+            else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.voucher = self.voucher
+                    .set(name: fields.first { $0.type == .productName }?.inferText ?? "")
+                    .set(redemptionStore: fields.first { $0.type == .redemptionStore }?.inferText ?? "")
+                    .set(code: fields.first { $0.type == .voucherCode }?.inferText ?? "")
+                    .set(validationDateString: fields.first { $0.type == .validationDateString }?.inferText ?? "")
+                    .set(type: template.type.toVoucherType)
             }
         }
     }
-    @Published var voucher: Voucher = Voucher(id: "", name: "", store: "", code: "", validationDate: .now, imageURLString: "")
+    @Published var voucher: Voucher = Voucher.dummy.set(id: UUID().uuidString)
     
     init(userInfo: PVUser) {
         self.userInfo = userInfo
     }
+    
+    
+    // MARK: - Method(s)
     
     func getImage(completion: @escaping (UIImage?) -> Void) {
         let storage = Storage.storage()
@@ -57,31 +63,41 @@ final class VoucherAdditionalViewModel: VoucherAdditionalViewModelProtocol {
     func uploadImage(image: UIImage?, to path: String) {
         guard let image else { return }
         
+        let tempVoucher = voucher
+        
         FirebaseStorageManager.uploadImage(image: image, to: path) { [weak self] url in
             guard let url else { return }
-            self?.scanImage(path: url.absoluteString)
+            let path = url.absoluteString
+            
+            self?.scanImage(path: path)
+            self?.voucher = tempVoucher
+                .set(imageURLString: path)
         }
     }
     
-    func scanImage(path: String) {
+    private func scanImage(path: String) {
         Task {
             do {
                 guard let ocrResponse = try await ClovaOCRManager.scan(imageURLString: path) else { return }
-                voucherImage = ocrResponse.images[0]
-            } catch let DecodingError.dataCorrupted(context) {
-                print(context)
-            } catch let DecodingError.keyNotFound(key, context) {
-                print("Key '\(key)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.valueNotFound(value, context) {
-                print("Value '\(value)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.typeMismatch(type, context)  {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                print("catch error: ", error)
+                
+                let image = ocrResponse.images[0]
+                
+                switch image.inferResult {
+                case .success:
+                    voucherImage = ocrResponse.images[0]
+                case .failure:
+                    break
+                }
             }
         }
+    }
+    
+    func insertNewVoucherToFirestore(voucher: Voucher) {
+        FirestoreManager
+            .reference(path: .users)
+            .reference(path: userInfo.uid)
+            .reference(path: .vouchers)
+            .reference(path: voucher.id)
+            .setData(voucher.data)
     }
 }

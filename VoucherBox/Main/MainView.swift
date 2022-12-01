@@ -60,14 +60,38 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
     
     private func voucherCard(_ voucher: Voucher) -> some View {
         HStack {
-            Image(systemName: "flame.fill")
+            AsyncImage(url: voucher.imageURL) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                    
+                case .failure(let error):
+                    VStack {
+                        Image(systemName: "flame.fill")
+                        
+                        Text("\(error.localizedDescription)")
+                    }
+                    
+                case .empty: // placeholder
+                    Image(systemName: "flame.fill")
+                    
+                @unknown default:
+                    VStack {
+                        Image(systemName: "flame.fill")
+                        
+                        Text("@unknown default")
+                    }
+                }
+            }
             
             VStack(alignment: .leading) {
                 Text(voucher.name)
                 
-                Text(voucher.validationDate.description)
+                Text(voucher.code)
                 
-                Text(voucher.store)
+                Text(voucher.redemptionStore)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
