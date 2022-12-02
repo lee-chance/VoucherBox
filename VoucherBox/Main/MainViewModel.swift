@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainViewModelProtocol: ObservableObject {
     var userInfo: PVUser { get }
+    var isValidVouchers: Bool { get set }
     var vouchers: [Voucher]? { get set }
     
     init(userInfo: PVUser)
@@ -16,6 +17,12 @@ protocol MainViewModelProtocol: ObservableObject {
 
 final class MainViewModel: MainViewModelProtocol {
     let userInfo: PVUser
+    private var fetchedVouchers: [Voucher]? {
+        didSet { reloadVouchers() }
+    }
+    @Published var isValidVouchers: Bool = true {
+        didSet { reloadVouchers() }
+    }
     @Published var vouchers: [Voucher]?
     
     init(userInfo: PVUser) {
@@ -26,6 +33,22 @@ final class MainViewModel: MainViewModelProtocol {
     
     deinit {
         FirestoreManager.listenerByLabel["MAIN_VOUCHERS"]?.remove()
+    }
+    
+    private func reloadVouchers() {
+        var tempVouchers = fetchedVouchers
+        
+        // 필터링
+        if isValidVouchers {
+            tempVouchers = tempVouchers?
+                .filter { !$0.isUsed }
+                .filter { $0.expirationDays >= 0 }
+        }
+        
+        // 정렬
+        tempVouchers?.sort { $0.expirationDays < $1.expirationDays }
+        
+        vouchers = tempVouchers
     }
     
     private func fetchVouchersFromFirestore(userID: String) {
@@ -45,7 +68,7 @@ final class MainViewModel: MainViewModelProtocol {
                 }
                 
                 let vouchers = querySnapshot.documents.map { $0.toVoucher(id: $0.documentID) }
-                self?.vouchers = vouchers
+                self?.fetchedVouchers = vouchers
             }
     }
     

@@ -60,17 +60,17 @@ struct VoucherAdditionalView<ViewModel: VoucherAdditionalViewModelProtocol>: Vie
     
     private var voucherInformationSection: some View {
         VStack {
-            TextField("쿠폰명", text: $viewModel.voucher.name)
+            TextField("교환처", text: $viewModel.voucher.redemptionStore)
             
-            TextField("템플릿", text: .constant(viewModel.voucher.type?.rawValue ?? ""))
+            TextField("쿠폰명", text: $viewModel.voucher.name)
             
             TextField("쿠폰코드번호", text: $viewModel.voucher.code)
             
-            TextField("교환처", text: $viewModel.voucher.redemptionStore)
-            
-            TextField("유효기간", text: $viewModel.voucher.validationDateString)
+            DatePicker("유효기간", selection: $viewModel.voucher.validationDate, displayedComponents: .date)
+                .datePickerStyle(.compact)
         }
         .textFieldStyle(.roundedBorder)
+        .padding()
     }
     
     private var additionalButton: some View {
@@ -80,6 +80,6 @@ struct VoucherAdditionalView<ViewModel: VoucherAdditionalViewModelProtocol>: Vie
         }) {
             Text("추가하기")
         }
-        .disabled(false) // TODO: 유효성 검사
+        .disabled(!viewModel.canSubmit)
     }
 }

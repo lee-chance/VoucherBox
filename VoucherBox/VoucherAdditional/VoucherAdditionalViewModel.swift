@@ -11,10 +11,11 @@ import FirebaseStorage
 protocol VoucherAdditionalViewModelProtocol: ObservableObject {
     var userInfo: PVUser { get }
     var voucher: Voucher { get set }
+    var canSubmit: Bool { get }
     
     init(userInfo: PVUser)
     
-    func getImage(completion: @escaping (UIImage?) -> Void)
+    func getImage(path: String, completion: @escaping (UIImage?) -> Void)
     func uploadImage(image: UIImage?, to path: String)
     func insertNewVoucherToFirestore(voucher: Voucher)
 }
@@ -33,28 +34,27 @@ final class VoucherAdditionalViewModel: VoucherAdditionalViewModelProtocol {
             
             DispatchQueue.main.async {
                 self.voucher = self.voucher
-                    .set(name: fields.first { $0.type == .productName }?.inferText ?? "")
-                    .set(redemptionStore: fields.first { $0.type == .redemptionStore }?.inferText ?? "")
-                    .set(code: fields.first { $0.type == .voucherCode }?.inferText ?? "")
-                    .set(validationDateString: fields.first { $0.type == .validationDateString }?.inferText ?? "")
+                    .set(name: fields.scannedText(of: .productName))
+                    .set(redemptionStore: fields.scannedText(of: .redemptionStore))
+                    .set(code: fields.scannedText(of: .voucherCode))
+                    .set(validationDate: fields.scannedText(of: .validationDateString).toDate(format: "yyyy년 MM월 dd일"))
                     .set(type: template.type.toVoucherType)
             }
         }
     }
     @Published var voucher: Voucher = Voucher.dummy.set(id: UUID().uuidString)
     
+    var canSubmit: Bool {
+        voucher.expirationDays > 0
+    }
+    
     init(userInfo: PVUser) {
         self.userInfo = userInfo
     }
     
-    
     // MARK: - Method(s)
     
-    func getImage(completion: @escaping (UIImage?) -> Void) {
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let spaceRef = storageRef.child("sample.jpg")
-        let path = "\(Bundle.main.firebaseStorageURLPrefix)\(spaceRef.fullPath)"
+    func getImage(path: String, completion: @escaping (UIImage?) -> Void) {
         FirebaseStorageManager.downloadImage(urlString: path) { uiimage in
             completion(uiimage)
         }

@@ -87,6 +87,17 @@ struct ClovaOCRFieldBound: Codable {
 
 
 // Clova OCR Model For App
+extension Collection where Element == ClovaOCRField {
+    func scannedText(of type: ClovaOCRField.FieldType) -> String {
+        self
+            .first { $0.type == type }?
+            .inferText
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "\n", with: " ")
+        ?? ""
+    }
+}
+
 extension ClovaOCRField {
     var type: FieldType {
         switch name {

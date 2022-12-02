@@ -56,11 +56,11 @@ extension QueryDocumentSnapshot {
         let name = data["name"] as? String ?? "name error"
         let redemptionStore = data["redemptionStore"] as? String ?? "redemptionStore error"
         let code = data["code"] as? String ?? "code error"
-        let validationDate = data["validationDate"] as? Date ?? Date()
+        let validationDate = data["validationDate"] as? Timestamp ?? Timestamp()
         let typeRawValue = data["type"] as? String ?? "type error"
         let imageURLString = data["imageURLString"] as? String ?? "imageURLString error"
         let isUsed = data["isUsed"] as? Bool ?? false
         
-        return Voucher(id: id, name: name, redemptionStore: redemptionStore, code: code, validationDateString: "\(validationDate)", type: Voucher.VoucherType(rawValue: typeRawValue), imageURLString: imageURLString, isUsed: isUsed)
+        return Voucher(id: id, name: name, redemptionStore: redemptionStore, code: code, validationDate: validationDate.dateValue(), type: Voucher.VoucherType(rawValue: typeRawValue), imageURLString: imageURLString, isUsed: isUsed)
     }
 }

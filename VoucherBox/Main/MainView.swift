@@ -39,6 +39,8 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
                 }
             }
             
+            Toggle("사용가능한 쿠폰만 보기", isOn: $viewModel.isValidVouchers)
+            
             ScrollView {
                 if let vouchers = viewModel.vouchers {
                     if vouchers.count > 0 {
@@ -55,48 +57,59 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
                 }
             }
         }
-        .padding()
+        .padding([.top, .horizontal])
     }
     
     private func voucherCard(_ voucher: Voucher) -> some View {
         HStack {
-            AsyncImage(url: voucher.imageURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                    
-                case .failure(let error):
-                    VStack {
-                        Image(systemName: "flame.fill")
-                        
-                        Text("\(error.localizedDescription)")
-                    }
-                    
-                case .empty: // placeholder
-                    Image(systemName: "flame.fill")
-                    
-                @unknown default:
-                    VStack {
-                        Image(systemName: "flame.fill")
-                        
-                        Text("@unknown default")
-                    }
-                }
-            }
+            voucherCardImage(imageURL: voucher.imageURL)
             
             VStack(alignment: .leading) {
+                if voucher.expirationDays > 0 {
+                    Text("D-\(voucher.expirationDays)")
+                } else if voucher.expirationDays == 0 {
+                    Text("D-Day")
+                } else {
+                    Text("유효기간이 만료되었습니다.")
+                }
+                
+                Text(voucher.redemptionStore)
+                
                 Text(voucher.name)
                 
                 Text(voucher.code)
-                
-                Text(voucher.redemptionStore)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 4)
-        .border(Color.red)
+    }
+    
+    private func voucherCardImage(imageURL: URL?) -> some View {
+        AsyncImage(url: imageURL) { phase in
+            switch phase {
+            case .success(let image):
+                image
+                    .resizable()
+                    .scaledToFit()
+                
+            case .failure(let error):
+                VStack {
+                    Image(systemName: "flame.fill")
+                    
+                    Text("\(error.localizedDescription)")
+                }
+                
+            case .empty: // placeholder
+                Image(systemName: "flame.fill")
+                
+            @unknown default:
+                VStack {
+                    Image(systemName: "flame.fill")
+                    
+                    Text("@unknown default")
+                }
+            }
+        }
     }
 }
