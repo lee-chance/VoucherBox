@@ -10,6 +10,9 @@ import SwiftUI
 struct MainView<ViewModel: MainViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
     @State private var openAdditionalView: Bool = false
+    @State private var selectedVoucher: Voucher?
+    
+    @Namespace var animation
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -46,6 +49,11 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
                     if vouchers.count > 0 {
                         ForEach(vouchers) { voucher in
                             voucherCard(voucher)
+                                .onTapGesture {
+                                    withAnimation(.easeInOut) {
+                                        selectedVoucher = voucher
+                                    }
+                                }
                         }
                     } else {
                         Text("Need to add new voucher")
@@ -58,11 +66,28 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
             }
         }
         .padding([.top, .horizontal])
+        .overlay(
+            VoucherDetailView(selectedVoucher: $selectedVoucher, userID: viewModel.userInfo.uid, animation: animation)
+        )
     }
     
     private func voucherCard(_ voucher: Voucher) -> some View {
         HStack {
-            voucherCardImage(imageURL: voucher.imageURL)
+            VoucherImage(imageURL: voucher.imageURL)
+                .scaledToFit()
+                .overlay(
+                    ZStack {
+                        Color.black
+                            .opacity(voucher.isUsed ? 0.5 : 0)
+                        
+                        if voucher.isUsed {
+                            Text("사용완료")
+                                .font(.title)
+                                .foregroundColor(.white)
+                        }
+                    }
+                )
+                .matchedGeometryEffect(id: voucher.id, in: animation)
             
             VStack(alignment: .leading) {
                 if voucher.expirationDays > 0 {
@@ -84,32 +109,16 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 4)
     }
+}
+
+struct MainView_Previews: PreviewProvider {
+    init() {
+        FirebaseAuthManager.signIn()
+    }
     
-    private func voucherCardImage(imageURL: URL?) -> some View {
-        AsyncImage(url: imageURL) { phase in
-            switch phase {
-            case .success(let image):
-                image
-                    .resizable()
-                    .scaledToFit()
-                
-            case .failure(let error):
-                VStack {
-                    Image(systemName: "flame.fill")
-                    
-                    Text("\(error.localizedDescription)")
-                }
-                
-            case .empty: // placeholder
-                Image(systemName: "flame.fill")
-                
-            @unknown default:
-                VStack {
-                    Image(systemName: "flame.fill")
-                    
-                    Text("@unknown default")
-                }
-            }
+    static var previews: some View {
+        if let user = FirebaseAuthManager.currentUser {
+            MainView(viewModel: MockMainViewModel(userInfo: user))
         }
     }
 }

@@ -42,7 +42,7 @@ final class VoucherAdditionalViewModel: VoucherAdditionalViewModelProtocol {
             }
         }
     }
-    @Published var voucher: Voucher = Voucher.dummy.set(id: UUID().uuidString)
+    @Published var voucher: Voucher = Voucher(id: UUID().uuidString)
     
     var canSubmit: Bool {
         voucher.expirationDays > 0

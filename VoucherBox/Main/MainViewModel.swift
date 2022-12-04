@@ -15,6 +15,42 @@ protocol MainViewModelProtocol: ObservableObject {
     init(userInfo: PVUser)
 }
 
+final class MockMainViewModel: MainViewModelProtocol {
+    let userInfo: PVUser
+    private var fetchedVouchers: [Voucher]? {
+        didSet { reloadVouchers() }
+    }
+    @Published var isValidVouchers: Bool = true {
+        didSet { reloadVouchers() }
+    }
+    @Published var vouchers: [Voucher]?
+    
+    init(userInfo: PVUser) {
+        self.userInfo = userInfo
+        fetchVouchers()
+    }
+    
+    private func reloadVouchers() {
+        var tempVouchers = fetchedVouchers
+        
+        // 필터링
+        if isValidVouchers {
+            tempVouchers = tempVouchers?
+                .filter { !$0.isUsed }
+                .filter { $0.expirationDays >= 0 }
+        }
+        
+        // 정렬
+        tempVouchers?.sort { $0.expirationDays < $1.expirationDays }
+        
+        vouchers = tempVouchers
+    }
+    
+    private func fetchVouchers() {
+        fetchedVouchers = Voucher.dummies
+    }
+}
+
 final class MainViewModel: MainViewModelProtocol {
     let userInfo: PVUser
     private var fetchedVouchers: [Voucher]? {
@@ -45,9 +81,6 @@ final class MainViewModel: MainViewModelProtocol {
                 .filter { $0.expirationDays >= 0 }
         }
         
-        // 정렬
-        tempVouchers?.sort { $0.expirationDays < $1.expirationDays }
-        
         vouchers = tempVouchers
     }
     
@@ -56,6 +89,7 @@ final class MainViewModel: MainViewModelProtocol {
             .reference(path: .users)
             .reference(path: userID)
             .reference(path: .vouchers)
+            .order(by: "validationDate")
             .addSnapshotListener { [weak self] querySnapshot, error in
                 if let error {
                     print("Error getting documents: \(error)")

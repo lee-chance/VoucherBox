@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Voucher: Identifiable {
+struct Voucher: Identifiable, Equatable {
     let id: String
     var name: String
     var redemptionStore: String
@@ -16,6 +16,17 @@ struct Voucher: Identifiable {
     let type: VoucherType?
     let imageURLString: String
     let isUsed: Bool
+    
+    init(id: String = "", name: String = "", redemptionStore: String = "", code: String = "", validationDate: Date = Date(), type: VoucherType? = nil, imageURLString: String = "", isUsed: Bool = false) {
+        self.id = id
+        self.name = name
+        self.redemptionStore = redemptionStore
+        self.code = code
+        self.validationDate = validationDate
+        self.type = type
+        self.imageURLString = imageURLString
+        self.isUsed = isUsed
+    }
     
     var imageURL: URL? {
         URL(string: imageURLString)
@@ -37,18 +48,35 @@ struct Voucher: Identifiable {
         case inumber
         case giftishow
     }
+}
+
+extension Voucher {
+    static func chickenDummy(validationDate: Date = .now) -> Voucher {
+        Voucher(id: UUID().uuidString, name: "치킨 기프티콘", redemptionStore: "치킨집", code: "123123123", validationDate: validationDate, type: nil, imageURLString: "https://mblogthumb-phinf.pstatic.net/MjAxODA5MjhfMjI3/MDAxNTM4MTQwNjMzNzI5.c7ZF7CxdxBkwou-yz5d4JnsF1mUGeNyBKd6cM28I4Ikg.sxZ2LGLrc9sC3NBGqpAE4XqHRyFVAZJks-MRwUOShP8g.JPEG.zoqgns7549/KakaoTalk_20180928_220601336.jpg?type=w800", isUsed: false)
+    }
     
-    static var dummy: Voucher {
-        Voucher(
-            id: "",
-            name: "",
-            redemptionStore: "",
-            code: "",
-            validationDate: Date(),
-            type: nil,
-            imageURLString: "",
-            isUsed: false
-        )
+    static func coffeeDummy(validationDate: Date = .now) -> Voucher {
+        Voucher(id: UUID().uuidString, name: "커피", redemptionStore: "스벅", code: "123123123", validationDate: validationDate, type: nil, imageURLString: "https://mblogthumb-phinf.pstatic.net/MjAyMjA3MjBfMTA3/MDAxNjU4MjkzNjEzMTgy.MPtABQRrHCZebUsL2MH2fY-WeQ8UsbH-F506fIm3Rdsg.qCKSbWONwGwxSvdcbsLWXX5st6eiAkDvJ7-BwTQxEvQg.JPEG.superpig518/1658293585993.jpg?type=w800", isUsed: false)
+    }
+    
+    static func iceCreamDummy(validationDate: Date = .now) -> Voucher {
+        Voucher(id: UUID().uuidString, name: "ice cream", redemptionStore: "br", code: "123123123", validationDate: validationDate, type: nil, imageURLString: "https://mblogthumb-phinf.pstatic.net/MjAyMjA0MTZfMTQz/MDAxNjUwMTEyMTg1OTYx.PtTNk5aTU6mQndgeNtC8m7GxTz0x6JUA1m7ISCBuUPkg.6XeUwq_XUXGZI6ujyQHuA4NymHnypmXYl_E1oedl5pQg.JPEG.superpig518/1650112172976.jpg?type=w800", isUsed: false)
+    }
+    
+    static var dummies: [Voucher] {
+        var tempDummies = [Voucher]()
+        var validationDate: Date = .now
+        for i in 0..<3 {
+            if i == 1 {
+                validationDate = .distantPast
+            } else if i == 2 {
+                validationDate = .distantFuture
+            }
+            tempDummies.append(chickenDummy(validationDate: validationDate))
+            tempDummies.append(coffeeDummy(validationDate: validationDate))
+            tempDummies.append(iceCreamDummy(validationDate: validationDate))
+        }
+        return tempDummies.shuffled()
     }
 }
 
