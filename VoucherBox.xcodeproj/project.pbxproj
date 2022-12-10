@@ -35,6 +35,8 @@
 		2EE94384292BA8D600166EF9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94383292BA8D600166EF9 /* FirebaseFirestore */; };
 		2EE94386292BA8D600166EF9 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94385292BA8D600166EF9 /* FirebasePerformance */; };
 		2EE94388292BA8D600166EF9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE94387292BA8D600166EF9 /* FirebaseStorage */; };
+		2EECB29329446E03005D3387 /* CustomUIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EECB29229446E03005D3387 /* CustomUIAlert.swift */; };
+		2EECB29529447231005D3387 /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EECB29429447231005D3387 /* ProcessingView.swift */; };
 		2EFD56DD29373292007BB1A1 /* VoucherAdditionalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD56DC29373292007BB1A1 /* VoucherAdditionalViewModel.swift */; };
 		2EFD56DF293734D5007BB1A1 /* ClovaOCRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD56DE293734D5007BB1A1 /* ClovaOCRManager.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +64,8 @@
 		2EE94376292BA50700166EF9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2EE94378292BA50C00166EF9 /* VoucherAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherAdditionalView.swift; sourceTree = "<group>"; };
 		2EE9437C292BA5A900166EF9 /* VoucherBox+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoucherBox+Bundle.swift"; sourceTree = "<group>"; };
+		2EECB29229446E03005D3387 /* CustomUIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIAlert.swift; sourceTree = "<group>"; };
+		2EECB29429447231005D3387 /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		2EFD56DC29373292007BB1A1 /* VoucherAdditionalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherAdditionalViewModel.swift; sourceTree = "<group>"; };
 		2EFD56DE293734D5007BB1A1 /* ClovaOCRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClovaOCRManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				2E52B52A293B5F35009D6D93 /* VoucherImage.swift */,
+				2EECB29229446E03005D3387 /* CustomUIAlert.swift */,
+				2EECB29429447231005D3387 /* ProcessingView.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -338,6 +344,8 @@
 				2E985EB42933A58200544861 /* Voucher.swift in Sources */,
 				2E985EC12933AC0100544861 /* FirestoreManager.swift in Sources */,
 				2EE94375292BA4FF00166EF9 /* FirebaseStorageManager.swift in Sources */,
+				2EECB29329446E03005D3387 /* CustomUIAlert.swift in Sources */,
+				2EECB29529447231005D3387 /* ProcessingView.swift in Sources */,
 				2EE94373292BA4EF00166EF9 /* AppDelegate.swift in Sources */,
 				2EFD56DF293734D5007BB1A1 /* ClovaOCRManager.swift in Sources */,
 				2E985EB22933986200544861 /* PVUser.swift in Sources */,

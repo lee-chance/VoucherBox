@@ -11,6 +11,7 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
     @State private var openAdditionalView: Bool = false
     @State private var selectedVoucher: Voucher?
+    @State private var isProcessing = false
     
     @Namespace var animation
     
@@ -21,6 +22,38 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
                     .font(.largeTitle)
                 
                 Spacer()
+                
+                if viewModel.userInfo.isAnonymous {
+                    Button(action: {
+                        CustomAlert.signupAlert { email, password in
+                            guard !email.isEmpty else {
+                                CustomAlert.loginErrorAlert(description: "email")
+                                return
+                            }
+                            
+                            guard !password.isEmpty else {
+                                CustomAlert.loginErrorAlert(description: "password")
+                                return
+                            }
+                            
+                            isProcessing = true
+                            
+                            FirebaseAuthManager.registerAccount(withEmail: email, password: password) { error in
+                                isProcessing = false
+                                
+                                if let error {
+                                    CustomAlert.signupErrorAlert(description: error)
+                                } else {
+                                    CustomAlert.signupSuccessAlert(email: email)
+                                }
+                            }
+                        }
+                    }) {
+                        Image(systemName: "person.fill.questionmark")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                    }
+                }
                 
                 Button(action: {
                     FirebaseAuthManager.signOut()
@@ -69,6 +102,7 @@ struct MainView<ViewModel: MainViewModelProtocol>: View {
         .overlay(
             VoucherDetailView(selectedVoucher: $selectedVoucher, userID: viewModel.userInfo.uid, animation: animation)
         )
+        .processingView(isProcessing: isProcessing)
     }
     
     private func voucherCard(_ voucher: Voucher) -> some View {

@@ -12,20 +12,22 @@ struct RootView: View {
     @State private var didSplash = false
     
     var body: some View {
-        if let userInfo, didSplash {
-            MainView(viewModel: MainViewModel(userInfo: userInfo))
-        } else {
-            SplashView(userInfo: $userInfo, afterAnimation: $didSplash)
-                .onAppear {
-                    FirebaseAuthManager.addStateDidChangeListener { _, user in
-                        userInfo = user
+        Group {
+            if let userInfo, didSplash {
+                MainView(viewModel: MainViewModel(userInfo: userInfo))
+            } else {
+                SplashView(userInfo: $userInfo, afterAnimation: $didSplash)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            didSplash = true
+                        }
                     }
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        didSplash = true
-                    }
-                }
+            }
+        }
+        .onAppear {
+            FirebaseAuthManager.addStateDidChangeListener { _, user in
+                userInfo = user
+            }
         }
     }
 }

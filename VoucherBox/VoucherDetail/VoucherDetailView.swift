@@ -85,7 +85,7 @@ struct VoucherDetailView: View {
             .onEnded { value in
                 let velocityHeight = value.predictedEndLocation.y - value.location.y
                 
-                if velocityHeight < -300 {
+                if velocityHeight < -10 {
                     showDetailInformation = true
                 }
                 

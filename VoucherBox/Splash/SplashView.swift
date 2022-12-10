@@ -10,24 +10,62 @@ import SwiftUI
 struct SplashView: View {
     @Binding var userInfo: PVUser?
     @Binding var afterAnimation: Bool
+    @State private var isProcessing = false
     
     var body: some View {
         VStack {
             Text("Let's Pocket Voucher!")
             
             if userInfo == nil, afterAnimation {
-                Button(action: {
-                    FirebaseAuthManager.signIn(withEmail: "a@a.com", password: "123456")
-                }) {
-                    Text("login to email")
+                loginToEmail
+                
+                loginToGuest
+            }
+        }
+        .processingView(isProcessing: isProcessing)
+    }
+    
+    private var loginToEmail: some View {
+        Button(action: {
+            CustomAlert.loginAlert { email, password in
+                guard !email.isEmpty else {
+                    CustomAlert.loginErrorAlert(description: "email")
+                    return
                 }
                 
-                Button(action: {
-                    FirebaseAuthManager.signIn()
-                }) {
-                    Text("login to guest")
+                guard !password.isEmpty else {
+                    CustomAlert.loginErrorAlert(description: "password")
+                    return
+                }
+                
+                isProcessing = true
+                
+                FirebaseAuthManager.signIn(withEmail: email, password: password) { error in
+                    isProcessing = false
+                    
+                    if let error {
+                        CustomAlert.loginErrorAlert(description: error)
+                    }
                 }
             }
+        }) {
+            Text("login to email")
+        }
+    }
+    
+    private var loginToGuest: some View {
+        Button(action: {
+            isProcessing = true
+            
+            FirebaseAuthManager.signIn { error in
+                isProcessing = false
+                
+                if let error {
+                    CustomAlert.loginErrorAlert(description: error)
+                }
+            }
+        }) {
+            Text("login to guest")
         }
     }
 }

@@ -19,35 +19,56 @@ final class FirebaseAuthManager {
         Auth.auth().addStateDidChangeListener(listener)
     }
     
-    static func signUp(withEmail email: String, password: String) {
+    static func registerAccount(withEmail email: String, password: String, result: @escaping (String?) -> Void) {
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        currentUser?.link(with: credential) { authResult, error in
+            if let error {
+                print("failed register account")
+                print(error.localizedDescription)
+                result(error.localizedDescription)
+            } else {
+                print("success register account")
+                result(nil)
+            }
+        }
+    }
+    
+    static func signUp(withEmail email: String, password: String, result: @escaping (String?) -> Void) {
         auth.createUser(withEmail: email, password: password) { authResult, error in
             if let error {
                 print("failed signing up")
                 print(error.localizedDescription)
+                result(error.localizedDescription)
             } else {
                 print("success signing up")
+                result(nil)
             }
         }
     }
     
-    static func signIn() {
+    static func signIn(result: ((String?) -> Void)? = nil) {
         auth.signInAnonymously { authResult, error in
             if let error {
                 print("failed signing in")
                 print(error.localizedDescription)
+                result?(error.localizedDescription)
             } else {
                 print("success signing in")
+                result?(nil)
             }
         }
     }
     
-    static func signIn(withEmail email: String, password: String) {
+    static func signIn(withEmail email: String, password: String, result: @escaping (String?) -> Void) {
         auth.signIn(withEmail: email, password: password) { authResult, error in
             if let error {
                 print("failed signing in")
                 print(error.localizedDescription)
+                result(error.localizedDescription)
             } else {
                 print("success signing in")
+                result(nil)
             }
         }
     }
